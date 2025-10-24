@@ -50,7 +50,18 @@
         '([ ]+)?# renovate: datasource=(?<datasource>[a-z-\\.]+?) depName=(?<depName>.+?)(?: packageName=(?<packageName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))? (?:ENV|ARG)? .+?_VERSION=(?<currentValue>.+?)(\\s|$)'
       ],
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}loose{{/if}}',
-    }
+    },
+    {
+      customType: 'regex',
+      description: 'Update docker tags in *.tf',
+      managerFilePatterns: [
+        '/\\.tf$/',
+      ],
+      matchStrings: [
+        '\\s+image\\s+= "(?<depName>[\\w\\/\\-]+)(?::(?<currentValue>[\\w.\\-]+))?(?:@(?<currentDigest>[\\w:]+))?"',
+      ],
+      datasourceTemplate: 'docker',
+    },
   ],
   labels: [
     'dependencies',
