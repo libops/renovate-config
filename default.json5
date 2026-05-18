@@ -5,6 +5,9 @@
     ':rebaseStalePrs',
     ':semanticCommits',
   ],
+  lockFileMaintenance: {
+    enabled: false,
+  },
   packageRules: [
     {
       matchPackageNames: [
