@@ -46,6 +46,15 @@
       groupName: 'github-actions',
       commitMessagePrefix: '[skip-release] ',
     },
+    {
+      matchDepTypes: [
+        'action',
+      ],
+      matchPackageNames: [
+        'libops/.github',
+      ],
+      pinDigests: false,
+    },
   ],
   customManagers: [
     {
