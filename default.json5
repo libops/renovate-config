@@ -5,6 +5,10 @@
     ':rebaseStalePrs',
     ':semanticCommits',
   ],
+  ignorePresets: [
+    'docker:pinDigests',
+    'helpers:pinGitHubActionDigests',
+  ],
   lockFileMaintenance: {
     enabled: false,
   },
@@ -47,13 +51,40 @@
       commitMessagePrefix: '[skip-release] ',
     },
     {
-      matchDepTypes: [
-        'action',
+      description: 'Pin container images not owned by LibOps',
+      matchDatasources: [
+        'docker',
       ],
       matchPackageNames: [
-        'libops/.github',
+        '!libops/**',
+        '!docker.io/libops/**',
+        '!ghcr.io/libops/**',
+        '!us-docker.pkg.dev/libops-images/**',
+      ],
+      pinDigests: true,
+    },
+    {
+      description: 'Pin GitHub Actions and workflows not owned by LibOps',
+      matchDepTypes: [
+        'action',
+        'workflow',
+      ],
+      matchPackageNames: [
+        '!libops/**',
+      ],
+      pinDigests: true,
+    },
+    {
+      description: 'Keep LibOps-owned dependencies on mutable release refs managed by Renovate',
+      matchPackageNames: [
+        'libops/**',
+        'docker.io/libops/**',
+        'github.com/libops/**',
+        'ghcr.io/libops/**',
+        'us-docker.pkg.dev/libops-images/**',
       ],
       pinDigests: false,
+      rangeStrategy: 'replace',
     },
   ],
   customManagers: [
