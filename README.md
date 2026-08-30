@@ -2,10 +2,11 @@
 
 libops' [Renovate Shareable Config Presets](https://docs.renovatebot.com/config-presets/#github)
 
-LibOps-owned GitHub dependencies and container images stay on readable release
-tags or branches. Renovate updates those refs, but does not replace them with
-commit SHAs or image digests. External dependencies retain the upstream
-best-practice digest-pinning policy.
+LibOps-owned GitHub dependencies and container images—including public images
+in `libops-images` and private API images in `libops-api`—stay on readable
+release tags or branches. Renovate updates those refs, but does not replace
+them with commit SHAs or image digests. External dependencies retain the
+upstream best-practice digest-pinning policy.
 
 
 ## Usage
